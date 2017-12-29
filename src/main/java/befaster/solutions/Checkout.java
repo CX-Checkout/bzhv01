@@ -17,7 +17,7 @@ public class Checkout {
 
         Map<Character, Integer> itemCounts = new HashMap<>();
         for (char item : skus.toCharArray()) {
-            if (item == 'A' || item == 'B' || item == 'C' || item == 'D' || item == 'E'|| item == 'F') {
+            if (item == 'A' || item == 'B' || item == 'C' || item == 'D' || item == 'E' || item == 'F') {
                 Integer frequency = itemCounts.get(item);
                 itemCounts.put(item, (Objects.isNull(frequency) ? 1 : frequency + 1));
             } else
@@ -66,9 +66,9 @@ public class Checkout {
                 Integer itemCount = itemCounts.get(item);
 
                 totalPrice += itemCount * 40;
-            }else if (item == 'F') {
+            } else if (item == 'F') {
                 Integer itemCount = itemCounts.get(item);
-                if(itemCount <= 2){
+                if (itemCount <= 2) {
                     totalPrice += itemCount * 10;
                 } else {
                     int rem = itemCount % 3;
