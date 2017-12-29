@@ -78,13 +78,16 @@ public class Checkout {
         Integer getECount = itemCounts.get('E');
 
         if (!Objects.isNull(getECount)){
-            int bCount =  itemCounts.get('B');
-            int eOffer = getECount/2;
-            int bOffer = bCount-eOffer;
-            if (eOffer > bCount){
-                bOffer = 0;
+            Integer bCount =  itemCounts.get('B');
+            if(!Objects.isNull(bCount)){
+                int eOffer = getECount/2;
+                int bOffer = bCount-eOffer;
+                if (eOffer > bCount){
+                    bOffer = 0;
+                }
+                itemCounts.replace('B',bCount,bOffer);
             }
-            itemCounts.replace('B',bCount,bOffer);
         }
+
     }
 }
