@@ -40,21 +40,18 @@ public class Checkout {
         int totalPrice = 0;
 
         for (char item : characters) {
-            int rem = 0;
             if (item == 'A') {
                 Integer itemCount = itemCounts.get(item);
-                if(itemCount >= 5){
-                    rem =  itemCount % 5;
+                if (itemCount >= 5) {
                     totalPrice += (itemCount / 5) * 200;
+                    itemCount = itemCount % 5;
                 }
-                if (rem >= 3 || itemCount == 3){
-                    totalPrice += (rem / 3) * 130;
-                    rem =  rem % 3;
+                if (itemCount >= 3) {
+                    totalPrice += (itemCount / 3) * 130;
+                    itemCount = itemCount % 3;
                 }
-                if(itemCount <=2){
+                if (itemCount <= 2) {
                     totalPrice += itemCount * 50;
-                }else{
-                    totalPrice += rem * 50;
                 }
             } else if (item == 'B') {
                 Integer itemCount = itemCounts.get(item);
@@ -65,7 +62,7 @@ public class Checkout {
             } else if (item == 'D') {
                 Integer itemCount = itemCounts.get(item);
                 totalPrice += itemCount * 15;
-            }else if (item == 'E') {
+            } else if (item == 'E') {
                 Integer itemCount = itemCounts.get(item);
 
                 totalPrice += itemCount * 40;
@@ -76,20 +73,21 @@ public class Checkout {
 
     /**
      * Update item counts cache as per E offer.
+     *
      * @param itemCounts : item count cache.
      */
-    private static void calculateEOffer(Map<Character, Integer> itemCounts){
+    private static void calculateEOffer(Map<Character, Integer> itemCounts) {
         Integer getECount = itemCounts.get('E');
 
-        if (!Objects.isNull(getECount)){
-            Integer bCount =  itemCounts.get('B');
-            if(!Objects.isNull(bCount)){
-                int eOffer = getECount/2;
-                int bOffer = bCount-eOffer;
-                if (eOffer > bCount){
+        if (!Objects.isNull(getECount)) {
+            Integer bCount = itemCounts.get('B');
+            if (!Objects.isNull(bCount)) {
+                int eOffer = getECount / 2;
+                int bOffer = bCount - eOffer;
+                if (eOffer > bCount) {
                     bOffer = 0;
                 }
-                itemCounts.replace('B',bCount,bOffer);
+                itemCounts.replace('B', bCount, bOffer);
             }
         }
 
