@@ -142,7 +142,7 @@ public class Checkout {
                     break;
                 case 'R':
                     itemCount = itemCounts.get(item);
-                    totalPrice += itemCount * 40;
+                    totalPrice += itemCount * 50;
                     break;
                 case 'S':
                     itemCount = itemCounts.get(item);
@@ -155,7 +155,7 @@ public class Checkout {
                 case 'U':
                     itemCount = itemCounts.get(item);
                     if (itemCount <= 3) {
-                        totalPrice += itemCount * 10;
+                        totalPrice += itemCount * 40;
                     } else {
                         int rem = itemCount % 4;
                         int div = itemCount / 4;
