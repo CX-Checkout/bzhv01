@@ -253,22 +253,24 @@ public class Checkout {
         char c[] = new char[]{'S','T','X','Y','Z'};
         int offerCount = 0;
         List<Integer> integerList = new ArrayList<>();
+        Map<Character,Integer> matcher = new HashMap<>();
 
         for (int i=0; i<=4 ;i++){
             if (Objects.isNull(itemCounts.get(c[i]))){
                 offerCount++;
             }else{
                 integerList.add(itemCounts.get(c[i]));
+                matcher.put(c[i],itemCounts.get(c[i]));
             }
             if (offerCount == 3){
                 return 0;
             }
         }
 
-        return  checkOfferCombination(integerList,itemCounts);
+        return  checkOfferCombination(integerList,itemCounts,matcher);
     }
 
-    private static Integer checkOfferCombination(List<Integer> integerList,Map<Character, Integer> itemCounts) {
+    private static Integer checkOfferCombination(List<Integer> integerList,Map<Character, Integer> itemCounts,Map<Character,Integer> matcher) {
 
         Collections.sort(integerList);
         Collections.reverse(integerList);
