@@ -271,6 +271,7 @@ public class Checkout {
     }
 
     private static Integer checkOfferCombination(List<Integer> integerList) {
+        Collections.sort(integerList);
         Collections.reverse(integerList);
         List<Integer> newList;
         int totalOfferCount =0;
@@ -284,7 +285,10 @@ public class Checkout {
                 if(newList.get(0)<=0 || newList.get(1)<=0){
                     return totalOfferCount;
                 }
+            integerList.remove(integerList.size()-(i+1));
+            Collections.sort(integerList);
             Collections.reverse(integerList);
+            Collections.sort(newList);
             Collections.reverse(newList);
 
 
