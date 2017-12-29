@@ -149,7 +149,7 @@ public class Checkout {
                     break;
                 case 'S':
                     itemCount = itemCounts.get(item);
-                    totalPrice += itemCount * 30;
+                    totalPrice += itemCount * 20;
                     break;
                 case 'T':
                     itemCount = itemCounts.get(item);
@@ -189,14 +189,11 @@ public class Checkout {
                     break;
                 case 'Y':
                     itemCount = itemCounts.get(item);
-                    totalPrice += itemCount * 10;
+                    totalPrice += itemCount * 20;
                     break;
                 case 'Z':
-                    if(characters.contains('X' )){
-
-                    }
                     itemCount = itemCounts.get(item);
-                    totalPrice += itemCount * 50;
+                    totalPrice += itemCount * 21;
                     break;
             }
         }
@@ -251,6 +248,11 @@ public class Checkout {
         }
     }
 
+    /**
+     *
+     * @param itemCounts
+     * @return
+     */
     private static int checkCombination(Map<Character, Integer> itemCounts){
 
         char c[] = new char[]{'S','T','X','Y','Z'};
@@ -273,6 +275,13 @@ public class Checkout {
         return  checkOfferCombination(integerList,itemCounts,matcher);
     }
 
+    /**
+     *
+     * @param integerList
+     * @param itemCounts
+     * @param matcher
+     * @return
+     */
     private static Integer checkOfferCombination(List<Integer> integerList,Map<Character, Integer> itemCounts,Map<Character,Integer> matcher) {
 
         Set<Map.Entry<Character,Integer>> set = matcher.entrySet();
@@ -283,9 +292,6 @@ public class Checkout {
                 return (o2.getValue().compareTo(o1.getValue()));
             }
         });
-
-
-        /****/
         Collections.sort(integerList);
         Collections.reverse(integerList);
         List<Integer> newList;
@@ -320,9 +326,5 @@ public class Checkout {
 
         }
         return totalOfferCount;
-    }
-
-    private static void collectionSort( List<Map.Entry<Character,Integer>> list){
-
     }
 }
