@@ -1,13 +1,16 @@
 package befaster.solutions;
 
 import java.util.ArrayList;
+import java.util.Collection;
 import java.util.Collections;
+import java.util.Comparator;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.Objects;
 import java.util.Set;
 import java.util.SortedSet;
+import java.util.TreeMap;
 
 public class Checkout {
 
@@ -272,6 +275,11 @@ public class Checkout {
 
     private static Integer checkOfferCombination(List<Integer> integerList,Map<Character, Integer> itemCounts,Map<Character,Integer> matcher) {
 
+        Set<Map.Entry<Character,Integer>> set = matcher.entrySet();
+        List<Map.Entry<Character,Integer>> list = new ArrayList<>(set);
+        collectionSort( list);
+
+        /****/
         Collections.sort(integerList);
         Collections.reverse(integerList);
         List<Integer> newList;
@@ -285,6 +293,18 @@ public class Checkout {
                     integerList.remove(integerList.size()-(i+1));
                 }
                 if(newList.get(0)<=0 || newList.get(1)<=0 || integerList.size() == 2){
+                    int count =0;
+                    for(Character key : matcher.keySet())
+                    {
+                        if(count == 0)
+                            itemCounts.replace(key, matcher.get(key));
+                        else if(count == 1)
+                            itemCounts.replace(key, matcher.get(key));
+                        else
+                            itemCounts.replace(key, 0);
+
+                        count++;
+                    }
                     return totalOfferCount;
                 }
             Collections.sort(integerList);
@@ -294,5 +314,14 @@ public class Checkout {
 
         }
         return totalOfferCount;
+    }
+
+    private static void collectionSort( List<Map.Entry<Character,Integer>> list){
+        Collections.sort(list, new Comparator<Map.Entry<Character, Integer>>() {
+            @Override
+            public int compare(Map.Entry<Character, Integer> o1, Map.Entry<Character, Integer> o2) {
+                return (o2.getValue().compareTo(o1.getValue()));
+            }
+        });
     }
 }
