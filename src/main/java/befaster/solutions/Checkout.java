@@ -297,9 +297,9 @@ public class Checkout {
                     for(Character key : matcher.keySet())
                     {
                         if(count == 0)
-                            itemCounts.replace(key, matcher.get(key));
+                            itemCounts.replace(key, matcher.get(key),newList.get(0));
                         else if(count == 1)
-                            itemCounts.replace(key, matcher.get(key));
+                            itemCounts.replace(key, matcher.get(key),newList.get(1));
                         else
                             itemCounts.replace(key, 0);
 
