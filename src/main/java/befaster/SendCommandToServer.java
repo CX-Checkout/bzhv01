@@ -56,7 +56,7 @@ public class SendCommandToServer {
      **/
     public static void main(String[] args) throws ConfigNotFoundException {
 
-        /*QueueBasedImplementationRunner runner = new QueueBasedImplementationRunner.Builder()
+        QueueBasedImplementationRunner runner = new QueueBasedImplementationRunner.Builder()
                 .setConfig(getRunnerConfig())
                 .withSolutionFor("sum", p -> Sum.sum(asInt(p[0]), asInt(p[1])))
                 .withSolutionFor("hello", p -> Hello.hello(p[0]))
@@ -67,14 +67,7 @@ public class SendCommandToServer {
         ChallengeSession.forRunner(runner)
                 .withConfig(getConfig())
                 .withActionProvider(new UserInputAction(args))
-                .start();*/
-
-        System.out.println(Checkout.checkout("AAA"));
-
-        /* {"method":"checkout","params":["A"],"id":"CHK_R2_004"}, expected: 50, got: 0
-                - {"method":"checkout","params":["ABCDE"],"id":"CHK_R2_013"}, expected: 155, got: 105
-                - {"method":"checkout","params":["A"],"id":"CHK_R2_014"}, expected: 50, got: 0
-*/
+                .start();
     }
 
 }

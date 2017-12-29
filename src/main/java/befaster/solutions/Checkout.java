@@ -87,63 +87,112 @@ public class Checkout {
                     }
                     break;
                 case 'G':
+                    itemCount = itemCounts.get(item);
+                    totalPrice += itemCount * 20;
+                    break;
                 case 'H':
+                    itemCount = itemCounts.get(item);
+                    if (itemCount >= 10) {
+                        totalPrice += (itemCount / 10) * 80;
+                        itemCount = itemCount % 10;
+                    }
+                    if (itemCount >= 5) {
+                        totalPrice += (itemCount / 5) * 45;
+                        itemCount = itemCount % 5;
+                    }
+                    if (itemCount <= 4) {
+                        totalPrice += itemCount * 10;
+                    }
+                    break;
                 case 'I':
+                    itemCount = itemCounts.get(item);
+                    totalPrice += itemCount * 35;
+                    break;
                 case 'J':
+                    itemCount = itemCounts.get(item);
+                    totalPrice += itemCount * 60;
+                    break;
                 case 'K':
+                    itemCount = itemCounts.get(item);
+                    totalPrice += ((itemCount % 2) * 80) + ((itemCount / 2) * 150);
+                    break;
                 case 'L':
+                    itemCount = itemCounts.get(item);
+                    totalPrice += itemCount * 90;
+                    break;
                 case 'M':
+                    itemCount = itemCounts.get(item);
+                    totalPrice += itemCount * 15;
+                    break;
                 case 'N':
+                    itemCount = itemCounts.get(item);
+                    totalPrice += itemCount * 40;
+                    break;
                 case 'O':
-                case 'P':
-                case 'Q':
-                case 'R':
-                case 'S':
-                case 'T':
-                case 'U':
-                case 'V':
-                case 'W':
-                case 'X':
-                case 'Y':
-                case 'Z':
-
-            }
-           /* if (item == 'A') {
-                Integer itemCount = itemCounts.get(item);
-                if (itemCount >= 5) {
-                    totalPrice += (itemCount / 5) * 200;
-                    itemCount = itemCount % 5;
-                }
-                if (itemCount >= 3) {
-                    totalPrice += (itemCount / 3) * 130;
-                    itemCount = itemCount % 3;
-                }
-                if (itemCount <= 2) {
-                    totalPrice += itemCount * 50;
-                }
-            } else if (item == 'B') {
-                Integer itemCount = itemCounts.get(item);
-                totalPrice += ((itemCount % 2) * 30) + ((itemCount / 2) * 45);
-            } else if (item == 'C') {
-                Integer itemCount = itemCounts.get(item);
-                totalPrice += itemCount * 20;
-            } else if (item == 'D') {
-                Integer itemCount = itemCounts.get(item);
-                totalPrice += itemCount * 15;
-            } else if (item == 'E') {
-                Integer itemCount = itemCounts.get(item);
-
-                totalPrice += itemCount * 40;
-            } else if (item == 'F') {
-                Integer itemCount = itemCounts.get(item);
-                if (itemCount <= 2) {
+                    itemCount = itemCounts.get(item);
                     totalPrice += itemCount * 10;
-                } else {
-                    int rem = itemCount % 3;
-                    int div = itemCount / 3;
-                    totalPrice += ((div * 2) + rem) * 10;
-                }
-            }*/
+                    break;
+                case 'P':
+                    itemCount = itemCounts.get(item);
+                    totalPrice += ((itemCount % 5) * 50) + ((itemCount / 5) * 200);
+                    break;
+                case 'Q':
+                    itemCount = itemCounts.get(item);
+                    totalPrice += ((itemCount % 3) * 30) + ((itemCount / 3) * 80);
+                    break;
+                case 'R':
+                    itemCount = itemCounts.get(item);
+                    totalPrice += itemCount * 40;
+                    break;
+                case 'S':
+                    itemCount = itemCounts.get(item);
+                    totalPrice += itemCount * 30;
+                    break;
+                case 'T':
+                    itemCount = itemCounts.get(item);
+                    totalPrice += itemCount * 20;
+                    break;
+                case 'U':
+                    itemCount = itemCounts.get(item);
+                    if (itemCount <= 3) {
+                        totalPrice += itemCount * 10;
+                    } else {
+                        int rem = itemCount % 4;
+                        int div = itemCount / 4;
+                        totalPrice += ((div * 3) + rem) * 40;
+                    }
+                    break;
+                case 'V':
+                    itemCount = itemCounts.get(item);
+                    if (itemCount >= 3) {
+                        totalPrice += (itemCount / 3) * 130;
+                        itemCount = itemCount % 3;
+                    }
+                    if (itemCount >= 2) {
+                        totalPrice += (itemCount / 2) * 90;
+                        itemCount = itemCount % 2;
+                    }
+                    if (itemCount == 1) {
+                        totalPrice += itemCount * 50;
+                    }
+                    break;
+                case 'W':
+                    itemCount = itemCounts.get(item);
+                    totalPrice += itemCount * 20;
+                    break;
+                case 'X':
+                    itemCount = itemCounts.get(item);
+                    totalPrice += itemCount * 90;
+                    break;
+                case 'Y':
+                    itemCount = itemCounts.get(item);
+                    totalPrice += itemCount * 10;
+                    break;
+                case 'Z':
+                    itemCount = itemCounts.get(item);
+                    totalPrice += itemCount * 50;
+                    break;
+            }
         }
         return totalPrice;
     }
@@ -155,6 +204,8 @@ public class Checkout {
      */
     private static void calculateOffer(Map<Character, Integer> itemCounts) {
         Integer getECount = itemCounts.get('E');
+        Integer getNCount = itemCounts.get('N');
+        Integer getRCount = itemCounts.get('R');
 
         if (!Objects.isNull(getECount)) {
             Integer bCount = itemCounts.get('B');
@@ -165,6 +216,30 @@ public class Checkout {
                     bOffer = 0;
                 }
                 itemCounts.replace('B', bCount, bOffer);
+            }
+        }
+
+        if (!Objects.isNull(getNCount)) {
+            Integer bCount = itemCounts.get('M');
+            if (!Objects.isNull(bCount)) {
+                int eOffer = getECount / 3;
+                int bOffer = bCount - eOffer;
+                if (eOffer > bCount) {
+                    bOffer = 0;
+                }
+                itemCounts.replace('M', bCount, bOffer);
+            }
+        }
+
+        if (!Objects.isNull(getRCount)) {
+            Integer bCount = itemCounts.get('Q');
+            if (!Objects.isNull(bCount)) {
+                int eOffer = getECount / 3;
+                int bOffer = bCount - eOffer;
+                if (eOffer > bCount) {
+                    bOffer = 0;
+                }
+                itemCounts.replace('Q', bCount, bOffer);
             }
         }
     }
