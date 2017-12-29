@@ -48,8 +48,8 @@ public class Checkout {
                     totalPrice += (itemCount / 5) * 200;
                 }
                 if (rem >= 3){
-                    rem =  itemCount % 3;
-                    totalPrice += (itemCount / 3) * 130;
+                    totalPrice += (rem / 3) * 130;
+                    rem =  rem % 3;
                 }
                 totalPrice += rem * 50;
             } else if (item == 'B') {
