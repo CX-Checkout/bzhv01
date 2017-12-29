@@ -340,7 +340,7 @@ public class Checkout {
                     else if (count == 1)
                         itemCounts.replace(key, matcher.get(key), newList.get(1));
                     else
-                        itemCounts.replace(key, 0);
+                        itemCounts.replace(key, integerList.get(key));
 
                     count++;
                 }
