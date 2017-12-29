@@ -68,8 +68,13 @@ public class Checkout {
                 totalPrice += itemCount * 40;
             }else if (item == 'F') {
                 Integer itemCount = itemCounts.get(item);
-
-                totalPrice += itemCount * 10;
+                if(itemCount <= 2){
+                    totalPrice += itemCount * 10;
+                } else {
+                    int rem = itemCount % 3;
+                    int div = itemCount / 3;
+                    totalPrice += ((div * 2) + rem) * 10;
+                }
             }
         }
         return totalPrice;
@@ -82,7 +87,6 @@ public class Checkout {
      */
     private static void calculateOffer(Map<Character, Integer> itemCounts) {
         Integer getECount = itemCounts.get('E');
-        Integer getFCount = itemCounts.get('F');
 
         if (!Objects.isNull(getECount)) {
             Integer bCount = itemCounts.get('B');
@@ -95,12 +99,5 @@ public class Checkout {
                 itemCounts.replace('B', bCount, bOffer);
             }
         }
-
-        if (!Objects.isNull(getFCount)){
-            int fOfferCount = getFCount/2;
-            int fOffer = getFCount - fOfferCount;
-            itemCounts.replace('F', getFCount, fOffer);
-        }
-
     }
 }
