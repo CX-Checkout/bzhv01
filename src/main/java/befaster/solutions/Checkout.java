@@ -17,7 +17,7 @@ public class Checkout {
 
         Map<Character, Integer> itemCounts = new HashMap<>();
         for (char item : skus.toCharArray()) {
-            if (item == 'A' || item == 'B' || item == 'C' || item == 'D') {
+            if (item == 'A' || item == 'B' || item == 'C' || item == 'D' || item == 'E') {
                 Integer frequency = itemCounts.get(item);
                 itemCounts.put(item, (Objects.isNull(frequency) ? 1 : frequency + 1));
             } else
@@ -35,13 +35,23 @@ public class Checkout {
      */
     private static Integer priceCalculation(Map<Character, Integer> itemCounts) {
 
+        calculateEOffer(itemCounts);
         Set<Character> characters = itemCounts.keySet();
         int totalPrice = 0;
 
         for (char item : characters) {
+            int rem = 0;
             if (item == 'A') {
                 Integer itemCount = itemCounts.get(item);
-                totalPrice += ((itemCount % 3) * 50) + ((itemCount / 3) * 130);
+                if(itemCount >= 5){
+                    rem =  itemCount / 5;
+                    totalPrice += (itemCount / 5) * 200;
+                }
+                if (rem >= 3){
+                    rem =  itemCount / 3;
+                    totalPrice += (itemCount / 3) * 130;
+                }
+                totalPrice += rem * 50;
             } else if (item == 'B') {
                 Integer itemCount = itemCounts.get(item);
                 totalPrice += ((itemCount % 2) * 30) + ((itemCount / 2) * 45);
@@ -51,8 +61,26 @@ public class Checkout {
             } else if (item == 'D') {
                 Integer itemCount = itemCounts.get(item);
                 totalPrice += itemCount * 15;
+            }else if (item == 'E') {
+                Integer itemCount = itemCounts.get(item);
+
+                totalPrice += itemCount * 40;
             }
         }
         return totalPrice;
+    }
+
+    private static void calculateEOffer(Map<Character, Integer> itemCounts){
+        Integer getECount = itemCounts.get('E');
+
+        if (!Objects.isNull(getECount)){
+            int bCount =  itemCounts.get('B');
+            int eOffer = getECount/2;
+            int bOffer = bCount-eOffer;
+            if (eOffer > bCount){
+                bOffer = 0;
+            }
+            itemCounts.replace('B',bCount,bOffer);
+        }
     }
 }
