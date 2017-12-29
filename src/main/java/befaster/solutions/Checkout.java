@@ -28,7 +28,6 @@ public class Checkout {
             } else
                 return -1;
         }
-
         return priceCalculation(itemCounts);
     }
 
@@ -43,7 +42,8 @@ public class Checkout {
         calculateOffer(itemCounts);
         Set<Character> characters = itemCounts.keySet();
         int totalPrice = 0;
-
+        checkCombination(itemCounts);
+        checkOfferCombination(itemCounts.get('S'),itemCounts.get('T'),itemCounts.get('X'),itemCounts.get('Y'),itemCounts.get('Z'));
         for (char item : characters) {
             switch (item) {
                 case 'A':
@@ -189,6 +189,9 @@ public class Checkout {
                     totalPrice += itemCount * 10;
                     break;
                 case 'Z':
+                    if(characters.contains('X' )){
+
+                    }
                     itemCount = itemCounts.get(item);
                     totalPrice += itemCount * 50;
                     break;
@@ -196,6 +199,7 @@ public class Checkout {
         }
         return totalPrice;
     }
+
 
     /**
      * Update item counts cache as per E offer.
@@ -242,5 +246,44 @@ public class Checkout {
                 itemCounts.replace('Q', bCount, bOffer);
             }
         }
+    }
+
+    private static int checkCombination(Map<Character, Integer> itemCounts){
+        Set<Character> characters = itemCounts.keySet();
+        Integer getSCount = itemCounts.get('S');
+        Integer getTCount = itemCounts.get('T');
+        Integer getXCount = itemCounts.get('X');
+        Integer getYCount = itemCounts.get('Y');
+        Integer getZCount = itemCounts.get('Z');
+
+        char c[] = new char[]{'S','T','X','Y','Z'};
+        int offerCount = 0;
+
+        for (int i=0; i<=4 ;i++){
+            if (Objects.isNull(itemCounts.get(c[i]))){
+                offerCount++;
+            }
+            if (offerCount == 3){
+                return 0;
+            }
+        }
+        checkOfferCombination(getSCount,getTCount,getXCount,getYCount,getZCount);
+
+        return 1;
+    }
+
+    private static void checkOfferCombination(Integer getSCount, Integer getTCount, Integer getXCount, Integer getYCount, Integer getZCount) {
+        char c[] = new char[]{'S','T','X','Y','Z'};
+        int offerCount = 0;
+
+        for (int i=0; i<=4 ;i++){
+            if (Objects.isNull(itemCounts.get(c[i]))){
+                offerCount++;
+            }
+            if (offerCount == 3){
+                return 0;
+            }
+        }
+        checkOfferCombination();
     }
 }
