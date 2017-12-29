@@ -43,7 +43,6 @@ public class Checkout {
         Set<Character> characters = itemCounts.keySet();
         int totalPrice = 0;
         checkCombination(itemCounts);
-        checkOfferCombination(itemCounts.get('S'),itemCounts.get('T'),itemCounts.get('X'),itemCounts.get('Y'),itemCounts.get('Z'));
         for (char item : characters) {
             switch (item) {
                 case 'A':
@@ -249,41 +248,30 @@ public class Checkout {
     }
 
     private static int checkCombination(Map<Character, Integer> itemCounts){
-        Set<Character> characters = itemCounts.keySet();
-        Integer getSCount = itemCounts.get('S');
-        Integer getTCount = itemCounts.get('T');
-        Integer getXCount = itemCounts.get('X');
-        Integer getYCount = itemCounts.get('Y');
-        Integer getZCount = itemCounts.get('Z');
 
         char c[] = new char[]{'S','T','X','Y','Z'};
         int offerCount = 0;
+        List<Integer> integerList = new ArrayList<>();
 
         for (int i=0; i<=4 ;i++){
             if (Objects.isNull(itemCounts.get(c[i]))){
                 offerCount++;
+            }else{
+                integerList.add(itemCounts.get(c[i]));
             }
             if (offerCount == 3){
                 return 0;
             }
         }
-        checkOfferCombination(getSCount,getTCount,getXCount,getYCount,getZCount);
+        checkOfferCombination(integerList);
 
         return 1;
     }
 
-    private static void checkOfferCombination(Integer getSCount, Integer getTCount, Integer getXCount, Integer getYCount, Integer getZCount) {
-        char c[] = new char[]{'S','T','X','Y','Z'};
-        int offerCount = 0;
+    private static void checkOfferCombination(List<Integer> integerList) {
+        
+        for (Integer integer : integerList){
 
-        for (int i=0; i<=4 ;i++){
-            if (Objects.isNull(itemCounts.get(c[i]))){
-                offerCount++;
-            }
-            if (offerCount == 3){
-                return 0;
-            }
         }
-        checkOfferCombination();
     }
 }
