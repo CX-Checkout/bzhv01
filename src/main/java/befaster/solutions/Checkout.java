@@ -222,7 +222,7 @@ public class Checkout {
         if (!Objects.isNull(getNCount)) {
             Integer bCount = itemCounts.get('M');
             if (!Objects.isNull(bCount)) {
-                int eOffer = getECount / 3;
+                int eOffer = getNCount / 3;
                 int bOffer = bCount - eOffer;
                 if (eOffer > bCount) {
                     bOffer = 0;
@@ -234,7 +234,7 @@ public class Checkout {
         if (!Objects.isNull(getRCount)) {
             Integer bCount = itemCounts.get('Q');
             if (!Objects.isNull(bCount)) {
-                int eOffer = getECount / 3;
+                int eOffer = getRCount / 3;
                 int bOffer = bCount - eOffer;
                 if (eOffer > bCount) {
                     bOffer = 0;
