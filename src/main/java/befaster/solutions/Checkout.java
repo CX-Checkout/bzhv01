@@ -276,11 +276,11 @@ public class Checkout {
         int totalOfferCount =0;
         for (int i =0; i<integerList.size(); i++ ){
             newList = new ArrayList<>();
-                if (integerList.get(2)!=0){
+                if (integerList.get(2)!=0 ){
                     newList.add(integerList.get(0)-integerList.get(integerList.size()-(i+1)));
                     newList.add(integerList.get(1)-integerList.get(integerList.size()-(i+1)));
                     totalOfferCount += integerList.get(integerList.size()-(i+1));
-                }else {
+                }else if(newList.get(0)==0 || newList.get(1)==0){
                     return totalOfferCount;
                 }
             Collections.sort(integerList);
