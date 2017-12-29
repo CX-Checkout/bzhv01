@@ -261,10 +261,13 @@ public class Checkout {
         Map<Character,Integer> matcher = new HashMap<>();
 
         for (int i=0; i<=4 ;i++){
-            if (!Objects.isNull(itemCounts.get(c[i])) && itemCounts.get(c[i]) >= 3){
-                integerList.add(itemCounts.get(c[i]));
-                matcher.put(c[i],itemCounts.get(c[i]));
-            }/*else{
+            if(!Objects.isNull(itemCounts.get(c[i]))){
+                if (itemCounts.get(c[i]) >= 3){
+                    integerList.add(itemCounts.get(c[i]));
+                    matcher.put(c[i],itemCounts.get(c[i]));
+                }
+            }
+            /*else{
                 integerList.add(itemCounts.get(c[i]));
                 matcher.put(c[i],itemCounts.get(c[i]));
             }
