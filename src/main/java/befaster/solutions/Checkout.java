@@ -44,11 +44,11 @@ public class Checkout {
             if (item == 'A') {
                 Integer itemCount = itemCounts.get(item);
                 if(itemCount >= 5){
-                    rem =  itemCount / 5;
+                    rem =  itemCount % 5;
                     totalPrice += (itemCount / 5) * 200;
                 }
                 if (rem >= 3){
-                    rem =  itemCount / 3;
+                    rem =  itemCount % 3;
                     totalPrice += (itemCount / 3) * 130;
                 }
                 totalPrice += rem * 50;
