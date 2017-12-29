@@ -11,7 +11,7 @@ public class Checkout {
      * Method is responsible to calculate item price
      *
      * @param skus : order list
-     * @return  total price
+     * @return total price
      */
     public static Integer checkout(String skus) {
 
