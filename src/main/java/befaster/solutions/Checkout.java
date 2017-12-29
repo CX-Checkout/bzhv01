@@ -329,23 +329,22 @@ public class Checkout {
             if (integerList.get(2) != 0) {
                 newList.add(integerList.get(0) - integerList.get(integerList.size() - (i + 1)));
                 newList.add(integerList.get(1) - integerList.get(integerList.size() - (i + 1)));
-                if (i > 1){
-                    newList.add(integerList.get(integerList.size() - (i + 1)));
-                }
                 totalOfferCount += integerList.get(integerList.size() - (i + 1));
-               // integerList.remove(integerList.size() - (i + 1));
+                integerList.remove(integerList.size() - (i + 1));
             }
             if (newList.get(0) <= 0 || newList.get(1) <= 0 || integerList.size() == 2) {
-
                 int count = 0;
                 for (Character key : matcher.keySet()) {
-                    itemCounts.replace(key, matcher.get(key), newList.get(count));
-                    /*if (count == 0)
+                    if (count == 0)
                         itemCounts.replace(key, matcher.get(key), newList.get(0));
                     else if (count == 1)
                         itemCounts.replace(key, matcher.get(key), newList.get(1));
+                    else if (count == 2)
+                        itemCounts.replace(key, matcher.get(key), integerList.get(2));
+                    else if (count == 2)
+                        itemCounts.replace(key, matcher.get(key), integerList.get(3));
                     else
-                        itemCounts.replace(key, 0);*/
+                        itemCounts.replace(key, 0);
 
                     count++;
                 }
