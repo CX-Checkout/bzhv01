@@ -1,6 +1,7 @@
 package befaster.solutions;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -269,9 +270,15 @@ public class Checkout {
     }
 
     private static void checkOfferCombination(List<Integer> integerList) {
-        
-        for (Integer integer : integerList){
+        Collections.sort(integerList);
+        int totalOfferCount =0;
+        for (int i =0; i<integerList.size(); i++ ){
+            integerList.add(i,integerList.get(0)-integerList.get(integerList.size()-i));
+            integerList.add(i,integerList.get(1)-integerList.get(integerList.size()-i));
+            totalOfferCount = integerList.get(integerList.size()-i);
+            Collections.sort(integerList);
 
         }
+        System.out.println(totalOfferCount);
     }
 }
