@@ -185,7 +185,7 @@ public class Checkout {
                     break;
                 case 'X':
                     itemCount = itemCounts.get(item);
-                    totalPrice += itemCount * 90;
+                    totalPrice += itemCount * 17;
                     break;
                 case 'Y':
                     itemCount = itemCounts.get(item);
@@ -277,7 +277,13 @@ public class Checkout {
 
         Set<Map.Entry<Character,Integer>> set = matcher.entrySet();
         List<Map.Entry<Character,Integer>> list = new ArrayList<>(set);
-        collectionSort( list);
+        Collections.sort(list, new Comparator<Map.Entry<Character, Integer>>() {
+            @Override
+            public int compare(Map.Entry<Character, Integer> o1, Map.Entry<Character, Integer> o2) {
+                return (o2.getValue().compareTo(o1.getValue()));
+            }
+        });
+
 
         /****/
         Collections.sort(integerList);
@@ -317,11 +323,6 @@ public class Checkout {
     }
 
     private static void collectionSort( List<Map.Entry<Character,Integer>> list){
-        Collections.sort(list, new Comparator<Map.Entry<Character, Integer>>() {
-            @Override
-            public int compare(Map.Entry<Character, Integer> o1, Map.Entry<Character, Integer> o2) {
-                return (o2.getValue().compareTo(o1.getValue()));
-            }
-        });
+
     }
 }
