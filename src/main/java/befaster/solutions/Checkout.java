@@ -329,7 +329,6 @@ public class Checkout {
             if (integerList.get(2) != 0) {
                 newList.add(integerList.get(0) - integerList.get(integerList.size() - (i + 1)));
                 newList.add(integerList.get(1) - integerList.get(integerList.size() - (i + 1)));
-                newList.add(integerList.get(2) - integerList.get(integerList.size() - (i + 1)));
                 totalOfferCount += integerList.get(integerList.size() - (i + 1));
                 integerList.remove(integerList.size() - (i + 1));
             }
@@ -340,8 +339,6 @@ public class Checkout {
                         itemCounts.replace(key, matcher.get(key), newList.get(0));
                     else if (count == 1)
                         itemCounts.replace(key, matcher.get(key), newList.get(1));
-                    else if (count == 1)
-                        itemCounts.replace(key, matcher.get(key), newList.get(2));
                     else
                         itemCounts.replace(key, 0);
 
