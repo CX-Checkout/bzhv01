@@ -44,7 +44,7 @@ public class Checkout {
                 totalPrice += ((itemCount % 3) * 50) + ((itemCount / 3) * 130);
             } else if (item == 'B') {
                 Integer itemCount = itemCounts.get(item);
-                totalPrice += ((itemCount % 2) * 30) + ((itemCount / 3) * 45);
+                totalPrice += ((itemCount % 2) * 30) + ((itemCount / 2) * 45);
             } else if (item == 'C') {
                 Integer itemCount = itemCounts.get(item);
                 totalPrice += itemCount * 20;
