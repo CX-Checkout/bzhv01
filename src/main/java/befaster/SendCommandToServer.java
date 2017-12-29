@@ -69,7 +69,7 @@ public class SendCommandToServer {
                 .withActionProvider(new UserInputAction(args))
                 .start();*/
 
-        System.out.println(Checkout.checkout("ABCDXYZK"));
+        System.out.println(Checkout.checkout("XXXYYZ"));
 
 /*
         - {"method":"checkout","params":["R"],"id":"CHK_R4_021"}, expected: 50, got: 40
