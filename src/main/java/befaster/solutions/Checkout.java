@@ -149,7 +149,13 @@ public class Checkout {
                     break;
                 case 'S':
                     itemCount = itemCounts.get(item);
-                    totalPrice += itemCount * 20;
+                    if (itemCount>=3){
+                        int div = itemCount/3;
+                        int rem = itemCount%3;
+                        totalPrice += (div*45)+(rem * 20);
+                    }else {
+                        totalPrice += itemCount * 20;
+                    }
                     break;
                 case 'T':
                     itemCount = itemCounts.get(item);
