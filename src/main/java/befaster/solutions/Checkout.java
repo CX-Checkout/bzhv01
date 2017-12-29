@@ -7,6 +7,7 @@ import java.util.List;
 import java.util.Map;
 import java.util.Objects;
 import java.util.Set;
+import java.util.SortedSet;
 
 public class Checkout {
 
@@ -269,16 +270,48 @@ public class Checkout {
         return 1;
     }
 
-    private static void checkOfferCombination(List<Integer> integerList) {
+    private static Integer checkOfferCombination(List<Integer> integerList) {
         Collections.sort(integerList);
+        List<Integer> newList;
         int totalOfferCount =0;
-        for (int i =0; i<integerList.size(); i++ ){
-            integerList.add(i,integerList.get(0)-integerList.get(integerList.size()-i));
-            integerList.add(i,integerList.get(1)-integerList.get(integerList.size()-i));
-            totalOfferCount = integerList.get(integerList.size()-i);
+        for (int i =0; i<integerList.size()-1; i++ ){
+            newList = new ArrayList<>();
+                if (integerList.get(2)!=0){
+                    newList.add(integerList.get(0)-integerList.get(integerList.size()-i));
+                    newList.add(integerList.get(1)-integerList.get(integerList.size()-i));
+                    totalOfferCount += integerList.size()-i;
+                }else {
+                    return totalOfferCount;
+                }
             Collections.sort(integerList);
+            Collections.sort(newList);
+            ;
 
         }
         System.out.println(totalOfferCount);
+        return totalOfferCount;
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
     }
 }
