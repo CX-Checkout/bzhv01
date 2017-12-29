@@ -261,7 +261,7 @@ public class Checkout {
         Map<Character,Integer> matcher = new HashMap<>();
 
         for (int i=0; i<=4 ;i++){
-            if (Objects.isNull(itemCounts.get(c[i]))){
+            if (Objects.isNull(itemCounts.get(c[i])) || itemCounts.get(c[i]) <= 2){
                 offerCount++;
             }else{
                 integerList.add(itemCounts.get(c[i]));
