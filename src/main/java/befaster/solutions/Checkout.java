@@ -266,6 +266,7 @@ public class Checkout {
                     integerList.add(itemCounts.get(c[i]));
                     matcher.put(c[i],itemCounts.get(c[i]));
                 }
+
             }
             /*else{
                 integerList.add(itemCounts.get(c[i]));
