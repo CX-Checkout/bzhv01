@@ -46,7 +46,7 @@ public class Checkout {
         Integer itemCount;
         calculateOffer(itemCounts);
         Set<Character> characters = itemCounts.keySet();
-        int totalPrice = checkCombination(itemCounts)*45;
+        int totalPrice = checkCombination(itemCounts) * 45;
         for (char item : characters) {
             switch (item) {
                 case 'A':
@@ -149,17 +149,23 @@ public class Checkout {
                     break;
                 case 'S':
                     itemCount = itemCounts.get(item);
-                    if (itemCount>=3){
-                        int div = itemCount/3;
-                        int rem = itemCount%3;
-                        totalPrice += (div*45)+(rem * 20);
-                    }else {
+                    if (itemCount >= 3) {
+                        int div = itemCount / 3;
+                        int rem = itemCount % 3;
+                        totalPrice += (div * 45) + (rem * 20);
+                    } else {
                         totalPrice += itemCount * 20;
                     }
                     break;
                 case 'T':
                     itemCount = itemCounts.get(item);
-                    totalPrice += itemCount * 20;
+                    if (itemCount >= 3) {
+                        int division = itemCount / 3;
+                        int remainder = itemCount % 3;
+                        totalPrice += (division * 45) + (remainder * 20);
+                    } else {
+                        totalPrice += itemCount * 20;
+                    }
                     break;
                 case 'U':
                     itemCount = itemCounts.get(item);
@@ -191,15 +197,33 @@ public class Checkout {
                     break;
                 case 'X':
                     itemCount = itemCounts.get(item);
-                    totalPrice += itemCount * 17;
+                    if (itemCount >= 3) {
+                        int division = itemCount / 3;
+                        int remainder = itemCount % 3;
+                        totalPrice += (division * 45) + (remainder * 17);
+                    } else {
+                        totalPrice += itemCount * 17;
+                    }
                     break;
                 case 'Y':
                     itemCount = itemCounts.get(item);
-                    totalPrice += itemCount * 20;
+                    if (itemCount >= 3) {
+                        int division = itemCount / 3;
+                        int remainder = itemCount % 3;
+                        totalPrice += (division * 45) + (remainder * 20);
+                    } else {
+                        totalPrice += itemCount * 20;
+                    }
                     break;
                 case 'Z':
                     itemCount = itemCounts.get(item);
-                    totalPrice += itemCount * 21;
+                    if (itemCount >= 3) {
+                        int division = itemCount / 3;
+                        int remainder = itemCount % 3;
+                        totalPrice += (division * 45) + (remainder * 21);
+                    } else {
+                        totalPrice += itemCount * 21;
+                    }
                     break;
             }
         }
@@ -255,43 +279,41 @@ public class Checkout {
     }
 
     /**
-     *
      * @param itemCounts
      * @return
      */
-    private static int checkCombination(Map<Character, Integer> itemCounts){
+    private static int checkCombination(Map<Character, Integer> itemCounts) {
 
-        char c[] = new char[]{'S','T','X','Y','Z'};
+        char c[] = new char[]{'S', 'T', 'X', 'Y', 'Z'};
         int offerCount = 0;
         List<Integer> integerList = new ArrayList<>();
-        Map<Character,Integer> matcher = new HashMap<>();
+        Map<Character, Integer> matcher = new HashMap<>();
 
-        for (int i=0; i<=4 ;i++){
-            if (Objects.isNull(itemCounts.get(c[i]))){
+        for (int i = 0; i <= 4; i++) {
+            if (Objects.isNull(itemCounts.get(c[i]))) {
                 offerCount++;
-            }else{
+            } else {
                 integerList.add(itemCounts.get(c[i]));
-                matcher.put(c[i],itemCounts.get(c[i]));
+                matcher.put(c[i], itemCounts.get(c[i]));
             }
-            if (offerCount == 3){
+            if (offerCount == 3) {
                 return 0;
             }
         }
 
-        return  checkOfferCombination(integerList,itemCounts,matcher);
+        return checkOfferCombination(integerList, itemCounts, matcher);
     }
 
     /**
-     *
      * @param integerList
      * @param itemCounts
      * @param matcher
      * @return
      */
-    private static Integer checkOfferCombination(List<Integer> integerList,Map<Character, Integer> itemCounts,Map<Character,Integer> matcher) {
+    private static Integer checkOfferCombination(List<Integer> integerList, Map<Character, Integer> itemCounts, Map<Character, Integer> matcher) {
 
-        Set<Map.Entry<Character,Integer>> set = matcher.entrySet();
-        List<Map.Entry<Character,Integer>> list = new ArrayList<>(set);
+        Set<Map.Entry<Character, Integer>> set = matcher.entrySet();
+        List<Map.Entry<Character, Integer>> list = new ArrayList<>(set);
         Collections.sort(list, new Comparator<Map.Entry<Character, Integer>>() {
             @Override
             public int compare(Map.Entry<Character, Integer> o1, Map.Entry<Character, Integer> o2) {
@@ -301,30 +323,29 @@ public class Checkout {
         Collections.sort(integerList);
         Collections.reverse(integerList);
         List<Integer> newList;
-        int totalOfferCount =0;
-        for (int i =0; i<integerList.size(); i++ ){
+        int totalOfferCount = 0;
+        for (int i = 0; i < integerList.size(); i++) {
             newList = new ArrayList<>();
-                if (integerList.get(2)!=0 ){
-                    newList.add(integerList.get(0)-integerList.get(integerList.size()-(i+1)));
-                    newList.add(integerList.get(1)-integerList.get(integerList.size()-(i+1)));
-                    totalOfferCount += integerList.get(integerList.size()-(i+1));
-                    integerList.remove(integerList.size()-(i+1));
-                }
-                if(newList.get(0)<=0 || newList.get(1)<=0 || integerList.size() == 2){
-                    int count =0;
-                    for(Character key : matcher.keySet())
-                    {
-                        if(count == 0)
-                            itemCounts.replace(key, matcher.get(key),newList.get(0));
-                        else if(count == 1)
-                            itemCounts.replace(key, matcher.get(key),newList.get(1));
-                        else
-                            itemCounts.replace(key, 0);
+            if (integerList.get(2) != 0) {
+                newList.add(integerList.get(0) - integerList.get(integerList.size() - (i + 1)));
+                newList.add(integerList.get(1) - integerList.get(integerList.size() - (i + 1)));
+                totalOfferCount += integerList.get(integerList.size() - (i + 1));
+                integerList.remove(integerList.size() - (i + 1));
+            }
+            if (newList.get(0) <= 0 || newList.get(1) <= 0 || integerList.size() == 2) {
+                int count = 0;
+                for (Character key : matcher.keySet()) {
+                    if (count == 0)
+                        itemCounts.replace(key, matcher.get(key), newList.get(0));
+                    else if (count == 1)
+                        itemCounts.replace(key, matcher.get(key), newList.get(1));
+                    else
+                        itemCounts.replace(key, 0);
 
-                        count++;
-                    }
-                    return totalOfferCount;
+                    count++;
                 }
+                return totalOfferCount;
+            }
             Collections.sort(integerList);
             Collections.reverse(integerList);
             Collections.sort(newList);
