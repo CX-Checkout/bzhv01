@@ -339,9 +339,9 @@ public class Checkout {
                         itemCounts.replace(key, matcher.get(key), newList.get(0));
                     else if (count == 1)
                         itemCounts.replace(key, matcher.get(key), newList.get(1));
-                    else if (count == 2)
+                    else if (count == 2 && integerList.size() == 3)
                         itemCounts.replace(key, matcher.get(key), integerList.get(2));
-                    else if (count == 2)
+                    else if (count == 2 && integerList.size() == 4)
                         itemCounts.replace(key, matcher.get(key), integerList.get(3));
                     else
                         itemCounts.replace(key, 0);
