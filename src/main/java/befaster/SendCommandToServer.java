@@ -69,7 +69,7 @@ public class SendCommandToServer {
                 .withActionProvider(new UserInputAction(args))
                 .start();*/
 
-        System.out.println(Checkout.checkout("AAABBCCD"));
+        System.out.println(Checkout.checkout("AABD"));
 
     }
 
