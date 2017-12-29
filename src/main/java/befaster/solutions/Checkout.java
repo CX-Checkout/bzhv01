@@ -277,9 +277,9 @@ public class Checkout {
         for (int i =0; i<integerList.size()-1; i++ ){
             newList = new ArrayList<>();
                 if (integerList.get(2)!=0){
-                    newList.add(integerList.get(0)-integerList.get(integerList.size()-i));
-                    newList.add(integerList.get(1)-integerList.get(integerList.size()-i));
-                    totalOfferCount += integerList.size()-i;
+                    newList.add(integerList.get(0)-integerList.get(integerList.size()-(i+1)));
+                    newList.add(integerList.get(1)-integerList.get(integerList.size()-(i+1)));
+                    totalOfferCount += integerList.size()-(i+1);
                 }else {
                     return totalOfferCount;
                 }
