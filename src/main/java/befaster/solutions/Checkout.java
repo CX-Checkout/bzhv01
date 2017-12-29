@@ -117,7 +117,7 @@ public class Checkout {
                     break;
                 case 'K':
                     itemCount = itemCounts.get(item);
-                    totalPrice += ((itemCount % 2) * 80) + ((itemCount / 2) * 150);
+                    totalPrice += ((itemCount % 2) * 70) + ((itemCount / 2) * 120);
                     break;
                 case 'L':
                     itemCount = itemCounts.get(item);
