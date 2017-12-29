@@ -43,8 +43,7 @@ public class Checkout {
         Integer itemCount;
         calculateOffer(itemCounts);
         Set<Character> characters = itemCounts.keySet();
-        int totalPrice = 0;
-        checkCombination(itemCounts);
+        int totalPrice = checkCombination(itemCounts)*45;
         for (char item : characters) {
             switch (item) {
                 case 'A':
@@ -265,12 +264,12 @@ public class Checkout {
                 return 0;
             }
         }
-        checkOfferCombination(integerList);
 
-        return 1;
+        return  checkOfferCombination(integerList,itemCounts);
     }
 
-    private static Integer checkOfferCombination(List<Integer> integerList) {
+    private static Integer checkOfferCombination(List<Integer> integerList,Map<Character, Integer> itemCounts) {
+
         Collections.sort(integerList);
         Collections.reverse(integerList);
         List<Integer> newList;
@@ -291,32 +290,7 @@ public class Checkout {
             Collections.sort(newList);
             Collections.reverse(newList);
 
-
         }
-        System.out.println(totalOfferCount);
         return totalOfferCount;
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
     }
 }
