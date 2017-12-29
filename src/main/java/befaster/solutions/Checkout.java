@@ -47,11 +47,15 @@ public class Checkout {
                     rem =  itemCount % 5;
                     totalPrice += (itemCount / 5) * 200;
                 }
-                if (rem >= 3){
+                if (rem >= 3 || itemCount == 3){
                     totalPrice += (rem / 3) * 130;
                     rem =  rem % 3;
                 }
-                totalPrice += rem * 50;
+                if(itemCount <=2){
+                    totalPrice += itemCount * 50;
+                }else{
+                    totalPrice += rem * 50;
+                }
             } else if (item == 'B') {
                 Integer itemCount = itemCounts.get(item);
                 totalPrice += ((itemCount % 2) * 30) + ((itemCount / 2) * 45);
