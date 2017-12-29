@@ -17,7 +17,7 @@ public class Checkout {
 
         Map<Character, Integer> itemCounts = new HashMap<>();
         for (char item : skus.toCharArray()) {
-            if (item == 'A' || item == 'B' || item == 'C' || item == 'D' || item == 'E') {
+            if (item == 'A' || item == 'B' || item == 'C' || item == 'D' || item == 'E'|| item == 'F') {
                 Integer frequency = itemCounts.get(item);
                 itemCounts.put(item, (Objects.isNull(frequency) ? 1 : frequency + 1));
             } else
@@ -35,7 +35,7 @@ public class Checkout {
      */
     private static Integer priceCalculation(Map<Character, Integer> itemCounts) {
 
-        calculateEOffer(itemCounts);
+        calculateOffer(itemCounts);
         Set<Character> characters = itemCounts.keySet();
         int totalPrice = 0;
 
@@ -66,6 +66,10 @@ public class Checkout {
                 Integer itemCount = itemCounts.get(item);
 
                 totalPrice += itemCount * 40;
+            }else if (item == 'F') {
+                Integer itemCount = itemCounts.get(item);
+
+                totalPrice += itemCount * 10;
             }
         }
         return totalPrice;
@@ -76,8 +80,9 @@ public class Checkout {
      *
      * @param itemCounts : item count cache.
      */
-    private static void calculateEOffer(Map<Character, Integer> itemCounts) {
+    private static void calculateOffer(Map<Character, Integer> itemCounts) {
         Integer getECount = itemCounts.get('E');
+        Integer getFCount = itemCounts.get('F');
 
         if (!Objects.isNull(getECount)) {
             Integer bCount = itemCounts.get('B');
@@ -89,6 +94,12 @@ public class Checkout {
                 }
                 itemCounts.replace('B', bCount, bOffer);
             }
+        }
+
+        if (!Objects.isNull(getFCount)){
+            int fOfferCount = getFCount/2;
+            int fOffer = getFCount - fOfferCount;
+            itemCounts.replace('F', getFCount, fOffer);
         }
 
     }
