@@ -2,6 +2,6 @@ package befaster.solutions;
 
 public class Hello {
     public static String hello(String friendName) {
-        return "hello world";
+        return "Hello, World!";
     }
 }
