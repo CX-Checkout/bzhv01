@@ -70,6 +70,10 @@ public class Checkout {
         return totalPrice;
     }
 
+    /**
+     * Update item counts cache as per E offer.
+     * @param itemCounts : item count cache.
+     */
     private static void calculateEOffer(Map<Character, Integer> itemCounts){
         Integer getECount = itemCounts.get('E');
 
